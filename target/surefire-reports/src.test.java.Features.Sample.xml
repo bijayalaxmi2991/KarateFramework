@@ -1,5 +1,5 @@
-<testsuite failures="1" name="src/test/java/Features/Sample.feature" skipped="0" tests="2" time="5.255063">
-  <testcase classname="src.test.java.Features.Sample" name="Create Booking POST" time="4.337349">
+<testsuite failures="3" name="src/test/java/Features/Sample.feature" skipped="0" tests="6" time="19.83717">
+  <testcase classname="src.test.java.Features.Sample" name="GET BookingIDs" time="4.113228">
     <system-out>Given url baseUrl ......................................................... passed
 And path 'auth' ........................................................... passed
 * def tokenPayload = ...................................................... passed
@@ -8,22 +8,15 @@ When method POST .......................................................... pass
 * def token = "token="+response.token ..................................... passed
 * print token ............................................................. passed
 Given url baseUrl ......................................................... passed
-And header Cookie = "" + token ............................................ passed
-* configure headers = {Content-Type : 'application/json', Accept : 'application/json'} . passed
-* def bookingPayload = .................................................... passed
+And header Cookie = token ................................................. passed
+* configure headers = {Content-Type : 'application/json', Accept : 'application/json', Authorization : 'Basic YWRtaW46cGFzc3dvcmQxMjM='} . passed
 And path 'booking' ........................................................ passed
-And request bookingPayload ................................................ passed
-When method POST .......................................................... passed
+When method GET ........................................................... passed
 Then status 200 ........................................................... passed
-And match $.bookingid == "#present" ....................................... passed
-And match $.booking.firstname == "Bijaya" ................................. passed
-And match $.booking.lastname == "Laxmi" ................................... passed
-* def id = response.bookingid ............................................. passed
-* print response.bookingid ................................................ passed
-* print id ................................................................ passed</system-out>
+* print response .......................................................... passed</system-out>
   </testcase>
-  <testcase classname="src.test.java.Features.Sample" name="Update Booking PUT" time="0.917714">
-    <failure message="Sample.feature:84 - evaluation (js) failed: 'booking/' + id, javax.script.ScriptException: ReferenceError: &quot;id&quot; is not defined in &lt;eval&gt; at line number 1&#10;stack trace: jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.throwAsScriptException(NashornScriptEngine.java:477)">Given url baseUrl ......................................................... passed
+  <testcase classname="src.test.java.Features.Sample" name="GET Booking for an ID" time="2.04311">
+    <system-out>Given url baseUrl ......................................................... passed
 And path 'auth' ........................................................... passed
 * def tokenPayload = ...................................................... passed
 And request tokenPayload .................................................. passed
@@ -31,8 +24,76 @@ When method POST .......................................................... pass
 * def token = "token="+response.token ..................................... passed
 * print token ............................................................. passed
 Given url baseUrl ......................................................... passed
-And header Cookie = "" + token ............................................ passed
-* configure headers = {Content-Type : 'application/json', Accept : 'application/json'} . passed
+And header Cookie = token ................................................. passed
+* configure headers = {Content-Type : 'application/json', Accept : 'application/json', Authorization : 'Basic YWRtaW46cGFzc3dvcmQxMjM='} . passed
+And path 'booking' ........................................................ passed
+When method GET ........................................................... passed
+Then status 200 ........................................................... passed
+* print response .......................................................... passed
+Given url baseUrl ......................................................... passed
+And path 'auth' ........................................................... passed
+* def tokenPayload = ...................................................... passed
+And request tokenPayload .................................................. passed
+When method POST .......................................................... passed
+* def token = "token="+response.token ..................................... passed
+* print token ............................................................. passed
+Given url baseUrl ......................................................... passed
+And header Cookie = token ................................................. passed
+* configure headers = {Content-Type : 'application/json', Accept : 'application/json', Authorization : 'Basic YWRtaW46cGFzc3dvcmQxMjM='} . passed
+And path 'booking/2481' ................................................... passed
+When method GET ........................................................... passed
+Then status 200 ........................................................... passed
+* print response .......................................................... passed
+* def jsonResponse = response ............................................. passed
+* def actFirstName = jsonResponse.firstname ............................... passed
+* def actLastName = jsonResponse.lastname ................................. passed
+* match actFirstName == 'John' ............................................ passed
+* match actLastName == 'Smith' ............................................ passed</system-out>
+  </testcase>
+  <testcase classname="src.test.java.Features.Sample" name="Create Booking POST" time="8.050883">
+    <system-out>Given url baseUrl ......................................................... passed
+And path 'auth' ........................................................... passed
+* def tokenPayload = ...................................................... passed
+And request tokenPayload .................................................. passed
+When method POST .......................................................... passed
+* def token = "token="+response.token ..................................... passed
+* print token ............................................................. passed
+Given url baseUrl ......................................................... passed
+And header Cookie = token ................................................. passed
+* configure headers = {Content-Type : 'application/json', Accept : 'application/json', Authorization : 'Basic YWRtaW46cGFzc3dvcmQxMjM='} . passed
+And path 'booking' ........................................................ passed
+When method GET ........................................................... passed
+Then status 200 ........................................................... passed
+* print response .......................................................... passed
+Given url baseUrl ......................................................... passed
+And path 'auth' ........................................................... passed
+* def tokenPayload = ...................................................... passed
+And request tokenPayload .................................................. passed
+When method POST .......................................................... passed
+* def token = "token="+response.token ..................................... passed
+* print token ............................................................. passed
+Given url baseUrl ......................................................... passed
+And header Cookie = token ................................................. passed
+* configure headers = {Content-Type : 'application/json', Accept : 'application/json', Authorization : 'Basic YWRtaW46cGFzc3dvcmQxMjM='} . passed
+And path 'booking/2481' ................................................... passed
+When method GET ........................................................... passed
+Then status 200 ........................................................... passed
+* print response .......................................................... passed
+* def jsonResponse = response ............................................. passed
+* def actFirstName = jsonResponse.firstname ............................... passed
+* def actLastName = jsonResponse.lastname ................................. passed
+* match actFirstName == 'John' ............................................ passed
+* match actLastName == 'Smith' ............................................ passed
+Given url baseUrl ......................................................... passed
+And path 'auth' ........................................................... passed
+* def tokenPayload = ...................................................... passed
+And request tokenPayload .................................................. passed
+When method POST .......................................................... passed
+* def token = "token="+response.token ..................................... passed
+* print token ............................................................. passed
+Given url baseUrl ......................................................... passed
+And header Cookie = token ................................................. passed
+* configure headers = {Content-Type : 'application/json', Accept : 'application/json', Authorization : 'Basic YWRtaW46cGFzc3dvcmQxMjM='} . passed
 * def bookingPayload = .................................................... passed
 And path 'booking' ........................................................ passed
 And request bookingPayload ................................................ passed
@@ -41,9 +102,23 @@ Then status 200 ........................................................... pass
 And match $.bookingid == "#present" ....................................... passed
 And match $.booking.firstname == "Bijaya" ................................. passed
 And match $.booking.lastname == "Laxmi" ................................... passed
-* def id = response.bookingid ............................................. passed
-* print response.bookingid ................................................ passed
-* print id ................................................................ passed
+* print response.bookingid ................................................ passed</system-out>
+  </testcase>
+  <testcase classname="src.test.java.Features.Sample" name="Update Booking PUT" time="1.880861">
+    <failure message="Sample.feature:86 - status code was: 405, expected: 200, response time: 904, url: https://restful-booker.herokuapp.com/booking/4405, response: Method Not Allowed">Given url baseUrl ......................................................... passed
+And path 'auth' ........................................................... passed
+* def tokenPayload = ...................................................... passed
+And request tokenPayload .................................................. passed
+When method POST .......................................................... passed
+* def token = "token="+response.token ..................................... passed
+* print token ............................................................. passed
+Given url baseUrl ......................................................... passed
+And header Cookie = token ................................................. passed
+* configure headers = {Content-Type : 'application/json', Accept : 'application/json', Authorization : 'Basic YWRtaW46cGFzc3dvcmQxMjM='} . passed
+And path 'booking' ........................................................ passed
+When method GET ........................................................... passed
+Then status 200 ........................................................... passed
+* print response .......................................................... passed
 Given url baseUrl ......................................................... passed
 And path 'auth' ........................................................... passed
 * def tokenPayload = ...................................................... passed
@@ -52,20 +127,270 @@ When method POST .......................................................... pass
 * def token = "token="+response.token ..................................... passed
 * print token ............................................................. passed
 Given url baseUrl ......................................................... passed
-And header Cookie = "" + token ............................................ passed
-* configure headers = {Content-Type : 'application/json', Accept : 'application/json'} . passed
+And header Cookie = token ................................................. passed
+* configure headers = {Content-Type : 'application/json', Accept : 'application/json', Authorization : 'Basic YWRtaW46cGFzc3dvcmQxMjM='} . passed
+And path 'booking/2481' ................................................... passed
+When method GET ........................................................... passed
+Then status 200 ........................................................... passed
+* print response .......................................................... passed
+* def jsonResponse = response ............................................. passed
+* def actFirstName = jsonResponse.firstname ............................... passed
+* def actLastName = jsonResponse.lastname ................................. passed
+* match actFirstName == 'John' ............................................ passed
+* match actLastName == 'Smith' ............................................ passed
+Given url baseUrl ......................................................... passed
+And path 'auth' ........................................................... passed
+* def tokenPayload = ...................................................... passed
+And request tokenPayload .................................................. passed
+When method POST .......................................................... passed
+* def token = "token="+response.token ..................................... passed
+* print token ............................................................. passed
+Given url baseUrl ......................................................... passed
+And header Cookie = token ................................................. passed
+* configure headers = {Content-Type : 'application/json', Accept : 'application/json', Authorization : 'Basic YWRtaW46cGFzc3dvcmQxMjM='} . passed
 * def bookingPayload = .................................................... passed
-And path 'booking/' + id .................................................. failed
+And path 'booking' ........................................................ passed
+And request bookingPayload ................................................ passed
+When method POST .......................................................... passed
+Then status 200 ........................................................... passed
+And match $.bookingid == "#present" ....................................... passed
+And match $.booking.firstname == "Bijaya" ................................. passed
+And match $.booking.lastname == "Laxmi" ................................... passed
+* print response.bookingid ................................................ passed
+Given url baseUrl ......................................................... passed
+And path 'auth' ........................................................... passed
+* def tokenPayload = ...................................................... passed
+And request tokenPayload .................................................. passed
+When method POST .......................................................... passed
+* def token = "token="+response.token ..................................... passed
+* print token ............................................................. passed
+Given url baseUrl ......................................................... passed
+And header Cookie = token ................................................. passed
+* configure headers = {Content-Type : 'application/json', Accept : 'application/json', Authorization : 'Basic YWRtaW46cGFzc3dvcmQxMjM='} . passed
+* def bookingPayload = .................................................... passed
+And path 'booking/4405' ................................................... passed
+And request bookingPayload ................................................ passed
+When method PUT ........................................................... passed
+Then status 200 ........................................................... failed
 
 Stack Trace:
-com.intuit.karate.exception.KarateException: Sample.feature:84 - evaluation (js) failed: 'booking/' + id, javax.script.ScriptException: ReferenceError: "id" is not defined in &lt;eval&gt; at line number 1
-stack trace: jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.throwAsScriptException(NashornScriptEngine.java:477)&#13;
-	at ✽.And path 'booking/' + id (Sample.feature:84)&#13;
+com.intuit.karate.exception.KarateException: Sample.feature:86 - status code was: 405, expected: 200, response time: 904, url: https://restful-booker.herokuapp.com/booking/4405, response: Method Not Allowed&#13;
+	at ✽.Then status 200 (Sample.feature:86)&#13;
 
-And request bookingPayload ................................................ skipped
-When method POST .......................................................... skipped
-Then status 200 ........................................................... skipped
 And match $.booking.firstname == "Bijaya1" ................................ skipped
 And match $.booking.lastname == "Laxmi1" .................................. skipped</failure>
+  </testcase>
+  <testcase classname="src.test.java.Features.Sample" name="Update Booking PATCH" time="1.87692">
+    <failure message="Sample.feature:103 - status code was: 405, expected: 200, response time: 935, url: https://restful-booker.herokuapp.com/booking/4405, response: Method Not Allowed">Given url baseUrl ......................................................... passed
+And path 'auth' ........................................................... passed
+* def tokenPayload = ...................................................... passed
+And request tokenPayload .................................................. passed
+When method POST .......................................................... passed
+* def token = "token="+response.token ..................................... passed
+* print token ............................................................. passed
+Given url baseUrl ......................................................... passed
+And header Cookie = token ................................................. passed
+* configure headers = {Content-Type : 'application/json', Accept : 'application/json', Authorization : 'Basic YWRtaW46cGFzc3dvcmQxMjM='} . passed
+And path 'booking' ........................................................ passed
+When method GET ........................................................... passed
+Then status 200 ........................................................... passed
+* print response .......................................................... passed
+Given url baseUrl ......................................................... passed
+And path 'auth' ........................................................... passed
+* def tokenPayload = ...................................................... passed
+And request tokenPayload .................................................. passed
+When method POST .......................................................... passed
+* def token = "token="+response.token ..................................... passed
+* print token ............................................................. passed
+Given url baseUrl ......................................................... passed
+And header Cookie = token ................................................. passed
+* configure headers = {Content-Type : 'application/json', Accept : 'application/json', Authorization : 'Basic YWRtaW46cGFzc3dvcmQxMjM='} . passed
+And path 'booking/2481' ................................................... passed
+When method GET ........................................................... passed
+Then status 200 ........................................................... passed
+* print response .......................................................... passed
+* def jsonResponse = response ............................................. passed
+* def actFirstName = jsonResponse.firstname ............................... passed
+* def actLastName = jsonResponse.lastname ................................. passed
+* match actFirstName == 'John' ............................................ passed
+* match actLastName == 'Smith' ............................................ passed
+Given url baseUrl ......................................................... passed
+And path 'auth' ........................................................... passed
+* def tokenPayload = ...................................................... passed
+And request tokenPayload .................................................. passed
+When method POST .......................................................... passed
+* def token = "token="+response.token ..................................... passed
+* print token ............................................................. passed
+Given url baseUrl ......................................................... passed
+And header Cookie = token ................................................. passed
+* configure headers = {Content-Type : 'application/json', Accept : 'application/json', Authorization : 'Basic YWRtaW46cGFzc3dvcmQxMjM='} . passed
+* def bookingPayload = .................................................... passed
+And path 'booking' ........................................................ passed
+And request bookingPayload ................................................ passed
+When method POST .......................................................... passed
+Then status 200 ........................................................... passed
+And match $.bookingid == "#present" ....................................... passed
+And match $.booking.firstname == "Bijaya" ................................. passed
+And match $.booking.lastname == "Laxmi" ................................... passed
+* print response.bookingid ................................................ passed
+Given url baseUrl ......................................................... passed
+And path 'auth' ........................................................... passed
+* def tokenPayload = ...................................................... passed
+And request tokenPayload .................................................. passed
+When method POST .......................................................... passed
+* def token = "token="+response.token ..................................... passed
+* print token ............................................................. passed
+Given url baseUrl ......................................................... passed
+And header Cookie = token ................................................. passed
+* configure headers = {Content-Type : 'application/json', Accept : 'application/json', Authorization : 'Basic YWRtaW46cGFzc3dvcmQxMjM='} . passed
+* def bookingPayload = .................................................... passed
+And path 'booking/4405' ................................................... passed
+And request bookingPayload ................................................ passed
+When method PUT ........................................................... passed
+Then status 200 ........................................................... failed
+
+Stack Trace:
+com.intuit.karate.exception.KarateException: Sample.feature:86 - status code was: 405, expected: 200, response time: 904, url: https://restful-booker.herokuapp.com/booking/4405, response: Method Not Allowed&#13;
+	at ✽.Then status 200 (Sample.feature:86)&#13;
+
+And match $.booking.firstname == "Bijaya1" ................................ skipped
+And match $.booking.lastname == "Laxmi1" .................................. skipped
+Given url baseUrl ......................................................... passed
+And path 'auth' ........................................................... passed
+* def tokenPayload = ...................................................... passed
+And request tokenPayload .................................................. passed
+When method POST .......................................................... passed
+* def token = "token="+response.token ..................................... passed
+* print token ............................................................. passed
+Given url baseUrl ......................................................... passed
+And header Cookie = token ................................................. passed
+* configure headers = {Content-Type : 'application/json', Accept : 'application/json', Authorization : 'Basic YWRtaW46cGFzc3dvcmQxMjM='} . passed
+* def bookingPayload = .................................................... passed
+And path 'booking/4405' ................................................... passed
+And request bookingPayload ................................................ passed
+When method PATCH ......................................................... passed
+Then status 200 ........................................................... failed
+
+Stack Trace:
+com.intuit.karate.exception.KarateException: Sample.feature:103 - status code was: 405, expected: 200, response time: 935, url: https://restful-booker.herokuapp.com/booking/4405, response: Method Not Allowed&#13;
+	at ✽.Then status 200 (Sample.feature:103)&#13;
+
+And match $.booking.firstname == "Bijaya2" ................................ skipped
+And match $.booking.lastname == "Laxmi2" .................................. skipped</failure>
+  </testcase>
+  <testcase classname="src.test.java.Features.Sample" name="DELETE Booking" time="1.872167">
+    <failure message="Sample.feature:111 - status code was: 405, expected: 201, response time: 933, url: https://restful-booker.herokuapp.com/booking/4405, response: Method Not Allowed">Given url baseUrl ......................................................... passed
+And path 'auth' ........................................................... passed
+* def tokenPayload = ...................................................... passed
+And request tokenPayload .................................................. passed
+When method POST .......................................................... passed
+* def token = "token="+response.token ..................................... passed
+* print token ............................................................. passed
+Given url baseUrl ......................................................... passed
+And header Cookie = token ................................................. passed
+* configure headers = {Content-Type : 'application/json', Accept : 'application/json', Authorization : 'Basic YWRtaW46cGFzc3dvcmQxMjM='} . passed
+And path 'booking' ........................................................ passed
+When method GET ........................................................... passed
+Then status 200 ........................................................... passed
+* print response .......................................................... passed
+Given url baseUrl ......................................................... passed
+And path 'auth' ........................................................... passed
+* def tokenPayload = ...................................................... passed
+And request tokenPayload .................................................. passed
+When method POST .......................................................... passed
+* def token = "token="+response.token ..................................... passed
+* print token ............................................................. passed
+Given url baseUrl ......................................................... passed
+And header Cookie = token ................................................. passed
+* configure headers = {Content-Type : 'application/json', Accept : 'application/json', Authorization : 'Basic YWRtaW46cGFzc3dvcmQxMjM='} . passed
+And path 'booking/2481' ................................................... passed
+When method GET ........................................................... passed
+Then status 200 ........................................................... passed
+* print response .......................................................... passed
+* def jsonResponse = response ............................................. passed
+* def actFirstName = jsonResponse.firstname ............................... passed
+* def actLastName = jsonResponse.lastname ................................. passed
+* match actFirstName == 'John' ............................................ passed
+* match actLastName == 'Smith' ............................................ passed
+Given url baseUrl ......................................................... passed
+And path 'auth' ........................................................... passed
+* def tokenPayload = ...................................................... passed
+And request tokenPayload .................................................. passed
+When method POST .......................................................... passed
+* def token = "token="+response.token ..................................... passed
+* print token ............................................................. passed
+Given url baseUrl ......................................................... passed
+And header Cookie = token ................................................. passed
+* configure headers = {Content-Type : 'application/json', Accept : 'application/json', Authorization : 'Basic YWRtaW46cGFzc3dvcmQxMjM='} . passed
+* def bookingPayload = .................................................... passed
+And path 'booking' ........................................................ passed
+And request bookingPayload ................................................ passed
+When method POST .......................................................... passed
+Then status 200 ........................................................... passed
+And match $.bookingid == "#present" ....................................... passed
+And match $.booking.firstname == "Bijaya" ................................. passed
+And match $.booking.lastname == "Laxmi" ................................... passed
+* print response.bookingid ................................................ passed
+Given url baseUrl ......................................................... passed
+And path 'auth' ........................................................... passed
+* def tokenPayload = ...................................................... passed
+And request tokenPayload .................................................. passed
+When method POST .......................................................... passed
+* def token = "token="+response.token ..................................... passed
+* print token ............................................................. passed
+Given url baseUrl ......................................................... passed
+And header Cookie = token ................................................. passed
+* configure headers = {Content-Type : 'application/json', Accept : 'application/json', Authorization : 'Basic YWRtaW46cGFzc3dvcmQxMjM='} . passed
+* def bookingPayload = .................................................... passed
+And path 'booking/4405' ................................................... passed
+And request bookingPayload ................................................ passed
+When method PUT ........................................................... passed
+Then status 200 ........................................................... failed
+
+Stack Trace:
+com.intuit.karate.exception.KarateException: Sample.feature:86 - status code was: 405, expected: 200, response time: 904, url: https://restful-booker.herokuapp.com/booking/4405, response: Method Not Allowed&#13;
+	at ✽.Then status 200 (Sample.feature:86)&#13;
+
+And match $.booking.firstname == "Bijaya1" ................................ skipped
+And match $.booking.lastname == "Laxmi1" .................................. skipped
+Given url baseUrl ......................................................... passed
+And path 'auth' ........................................................... passed
+* def tokenPayload = ...................................................... passed
+And request tokenPayload .................................................. passed
+When method POST .......................................................... passed
+* def token = "token="+response.token ..................................... passed
+* print token ............................................................. passed
+Given url baseUrl ......................................................... passed
+And header Cookie = token ................................................. passed
+* configure headers = {Content-Type : 'application/json', Accept : 'application/json', Authorization : 'Basic YWRtaW46cGFzc3dvcmQxMjM='} . passed
+* def bookingPayload = .................................................... passed
+And path 'booking/4405' ................................................... passed
+And request bookingPayload ................................................ passed
+When method PATCH ......................................................... passed
+Then status 200 ........................................................... failed
+
+Stack Trace:
+com.intuit.karate.exception.KarateException: Sample.feature:103 - status code was: 405, expected: 200, response time: 935, url: https://restful-booker.herokuapp.com/booking/4405, response: Method Not Allowed&#13;
+	at ✽.Then status 200 (Sample.feature:103)&#13;
+
+And match $.booking.firstname == "Bijaya2" ................................ skipped
+And match $.booking.lastname == "Laxmi2" .................................. skipped
+Given url baseUrl ......................................................... passed
+And path 'auth' ........................................................... passed
+* def tokenPayload = ...................................................... passed
+And request tokenPayload .................................................. passed
+When method POST .......................................................... passed
+* def token = "token="+response.token ..................................... passed
+* print token ............................................................. passed
+Given url baseUrl ......................................................... passed
+And header Cookie = token ................................................. passed
+* configure headers = {Content-Type : 'application/json', Accept : 'application/json', Authorization : 'Basic YWRtaW46cGFzc3dvcmQxMjM='} . passed
+And path 'booking/4405' ................................................... passed
+When method DELETE ........................................................ passed
+Then status 201 ........................................................... failed
+
+Stack Trace:
+com.intuit.karate.exception.KarateException: Sample.feature:111 - status code was: 405, expected: 201, response time: 933, url: https://restful-booker.herokuapp.com/booking/4405, response: Method Not Allowed&#13;
+	at ✽.Then status 201 (Sample.feature:111)</failure>
   </testcase>
 </testsuite>

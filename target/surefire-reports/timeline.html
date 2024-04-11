@@ -13,7 +13,7 @@
     <div id="visualization"></div>
     <script>
 var groups = new vis.DataSet([{"id":1,"content":"ForkJoinPool-1-worker-3"}]);
-var items = new vis.DataSet([{"id":1,"group":1,"content":"Sample[1:41]","start":3525,"end":7933,"title":"Sample[1:41] 05:30:03.525-05:30:07.933 Create Booking POST"},{"id":2,"group":1,"content":"Sample[2:68]","start":7966,"end":8890,"title":"Sample[2:68] 05:30:07.966-05:30:08.890 Update Booking PUT"}]);
+var items = new vis.DataSet([{"id":1,"group":1,"content":"Sample[1:22]","start":1422,"end":5575,"title":"Sample[1:22] 05:30:01.422-05:30:05.575 GET BookingIDs"},{"id":2,"group":1,"content":"Sample[2:29]","start":5621,"end":7732,"title":"Sample[2:29] 05:30:05.621-05:30:07.732 GET Booking for an ID"},{"id":3,"group":1,"content":"Sample[3:41]","start":7745,"end":15807,"title":"Sample[3:41] 05:30:07.745-05:30:15.807 Create Booking POST"},{"id":4,"group":1,"content":"Sample[4:67]","start":15822,"end":17708,"title":"Sample[4:67] 05:30:15.822-05:30:17.708 Update Booking PUT"},{"id":5,"group":1,"content":"Sample[5:91]","start":17746,"end":19630,"title":"Sample[5:91] 05:30:17.746-05:30:19.630 Update Booking PATCH"},{"id":6,"group":1,"content":"Sample[6:107]","start":19685,"end":21562,"title":"Sample[6:107] 05:30:19.685-05:30:21.562 DELETE Booking"}]);
 var container = document.getElementById('visualization');
 var timeline = new vis.Timeline(container);
 timeline.setOptions({ groupOrder: 'content' });
