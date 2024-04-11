@@ -1,0 +1,71 @@
+<testsuite failures="1" name="src/test/java/Features/Sample.feature" skipped="0" tests="2" time="5.255063">
+  <testcase classname="src.test.java.Features.Sample" name="Create Booking POST" time="4.337349">
+    <system-out>Given url baseUrl ......................................................... passed
+And path 'auth' ........................................................... passed
+* def tokenPayload = ...................................................... passed
+And request tokenPayload .................................................. passed
+When method POST .......................................................... passed
+* def token = "token="+response.token ..................................... passed
+* print token ............................................................. passed
+Given url baseUrl ......................................................... passed
+And header Cookie = "" + token ............................................ passed
+* configure headers = {Content-Type : 'application/json', Accept : 'application/json'} . passed
+* def bookingPayload = .................................................... passed
+And path 'booking' ........................................................ passed
+And request bookingPayload ................................................ passed
+When method POST .......................................................... passed
+Then status 200 ........................................................... passed
+And match $.bookingid == "#present" ....................................... passed
+And match $.booking.firstname == "Bijaya" ................................. passed
+And match $.booking.lastname == "Laxmi" ................................... passed
+* def id = response.bookingid ............................................. passed
+* print response.bookingid ................................................ passed
+* print id ................................................................ passed</system-out>
+  </testcase>
+  <testcase classname="src.test.java.Features.Sample" name="Update Booking PUT" time="0.917714">
+    <failure message="Sample.feature:84 - evaluation (js) failed: 'booking/' + id, javax.script.ScriptException: ReferenceError: &quot;id&quot; is not defined in &lt;eval&gt; at line number 1&#10;stack trace: jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.throwAsScriptException(NashornScriptEngine.java:477)">Given url baseUrl ......................................................... passed
+And path 'auth' ........................................................... passed
+* def tokenPayload = ...................................................... passed
+And request tokenPayload .................................................. passed
+When method POST .......................................................... passed
+* def token = "token="+response.token ..................................... passed
+* print token ............................................................. passed
+Given url baseUrl ......................................................... passed
+And header Cookie = "" + token ............................................ passed
+* configure headers = {Content-Type : 'application/json', Accept : 'application/json'} . passed
+* def bookingPayload = .................................................... passed
+And path 'booking' ........................................................ passed
+And request bookingPayload ................................................ passed
+When method POST .......................................................... passed
+Then status 200 ........................................................... passed
+And match $.bookingid == "#present" ....................................... passed
+And match $.booking.firstname == "Bijaya" ................................. passed
+And match $.booking.lastname == "Laxmi" ................................... passed
+* def id = response.bookingid ............................................. passed
+* print response.bookingid ................................................ passed
+* print id ................................................................ passed
+Given url baseUrl ......................................................... passed
+And path 'auth' ........................................................... passed
+* def tokenPayload = ...................................................... passed
+And request tokenPayload .................................................. passed
+When method POST .......................................................... passed
+* def token = "token="+response.token ..................................... passed
+* print token ............................................................. passed
+Given url baseUrl ......................................................... passed
+And header Cookie = "" + token ............................................ passed
+* configure headers = {Content-Type : 'application/json', Accept : 'application/json'} . passed
+* def bookingPayload = .................................................... passed
+And path 'booking/' + id .................................................. failed
+
+Stack Trace:
+com.intuit.karate.exception.KarateException: Sample.feature:84 - evaluation (js) failed: 'booking/' + id, javax.script.ScriptException: ReferenceError: "id" is not defined in &lt;eval&gt; at line number 1
+stack trace: jdk.scripting.nashorn/jdk.nashorn.api.scripting.NashornScriptEngine.throwAsScriptException(NashornScriptEngine.java:477)&#13;
+	at ✽.And path 'booking/' + id (Sample.feature:84)&#13;
+
+And request bookingPayload ................................................ skipped
+When method POST .......................................................... skipped
+Then status 200 ........................................................... skipped
+And match $.booking.firstname == "Bijaya1" ................................ skipped
+And match $.booking.lastname == "Laxmi1" .................................. skipped</failure>
+  </testcase>
+</testsuite>
